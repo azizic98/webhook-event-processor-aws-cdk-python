@@ -119,13 +119,22 @@ bucket = s3.Bucket(self,
 
 Once the stack is deployed, you can send POST requests to the API endpoint with your JSON data. The data will be processed by the Lambda function and stored in the S3 bucket.
 
-Example POST request using `curl`:
+**Note:** Files will be stored in S3 with the name of the event_id's value. The files will be organized in a dated structure within the S3 bucket.
+
+### Example POST request using `curl`:
 
 ```sh
 curl -X POST <api-endpoint>/events -H "Content-Type: application/json" -d '{"event_id": "12345", "data": "example"}'
 ```
 
 Replace `<api-endpoint>` with the URL of your deployed API Gateway.
+
+
+### Example File Storage in `S3` : 
+
+If the current date is June 29, 2024, and the event_id is 12345, the file will be stored in the S3 bucket as follows:
+
+`s3://event-webhooks-bucket/2024/06/29/12345.json`
 
 ## Clean Up
 
